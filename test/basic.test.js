@@ -12,10 +12,10 @@ test('input negative should return error', () => {
   expect(getNumber('-1')).toEqual(Error('Ввод некорректен'));
 });
 
-test('input string should return error', () => {
-  expect(getNumber('string')).toEqual(Error('Ввод некорректен'));
+test('input non integer should return error', () => {
+  expect(getNumber('0.6')).toEqual(Error('Ввод некорректен'));
 });
 
-test('input non decimal should return error', () => {
-  expect(getNumber('0xFF')).toEqual(Error('Ввод некорректен'));
+test('input string should return error', () => {
+  expect(getNumber('string')).toEqual(Error('Ввод некорректен'));
 });

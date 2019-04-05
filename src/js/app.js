@@ -1,8 +1,8 @@
 const getNumber = (str) => {
   try {
-    parsed = parseInt(str, 10);
+    let parsed = +str;
     console.log(parsed);
-    if (Number.isNaN(parsed) || parsed <= 0) {
+    if ((parsed ^ 0) !== parsed || Number.isNaN(parsed) || parsed <= 0) {
       throw new Error('Ввод некорректен');
     } else return parsed;
   } catch (e) {
