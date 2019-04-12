@@ -1,27 +1,35 @@
-function sort(hero, filter) {
-  const arrayFiltred = [];
-  const arrayNotFiltred = [];
-
-  if (filter) {
-    filter.forEach((item) => {
-      arrayFiltred.push({
-        key: item,
-        value: hero[item],
-      });
-    });
+function Character(name, type) {
+  if (name.length < 2 || name.length > 10) {
+    throw new Error('Некорректно введено имя');
+  }
+  if (type === 'Bowman') {
+    this.attack = 25;
+    this.defence = 25;
+  } else if (type === 'Swordsman') {
+    this.attack = 40;
+    this.defence = 10;
+  } else if (type === 'Magician') {
+    this.attack = 10;
+    this.defence = 40;
+  } else if (type === 'Undead') {
+    this.attack = 25;
+    this.defence = 25;
+  } else if (type === 'Zombie') {
+    this.attack = 40;
+    this.defence = 10;
+  } else if (type === 'Daemon') {
+    this.attack = 10;
+    this.defence = 40;
+  } else {
+    throw new Error('Указан неверный тип персонажа');
   }
 
-  for (const item in hero) {
-    if (!arrayFiltred.includes(item)) {
-      arrayNotFiltred.push({
-        key: item,
-        value: hero[item],
-      });
-    }
-  }
-  arrayNotFiltred.sort();
+  this.health = 100;
+  this.level = 1;
+  this.name = name;
+  this.type = type;
 
-  return arrayFiltred.concat(arrayNotFiltred);
+  return this;
 }
 
-export default sort;
+export default Character;

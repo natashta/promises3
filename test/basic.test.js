@@ -1,44 +1,32 @@
-import sort from '../src/js/app';
+import Character from '../src/js/app';
 
-const hero = {
-  name: 'мечник',
-  health: 10,
-  level: 2,
-  attack: 80,
-  defence: 40,
-};
-
-test('sort with filter', () => {
-  const filter = ['name', 'level'];
-  const expected = [
-    { key: 'name', value: 'мечник' },
-    { key: 'level', value: 2 },
-    { key: 'attack', value: 80 },
-    { key: 'defence', value: 40 },
-    { key: 'health', value: 10 },
-  ];
-  expect(sort(hero, filter)).toEqual(expected);
+test('Создание персонажа с заданными свойствами', () => {
+  const character = new Character('John', 'Swordsman');
+  const expected = {
+    name: 'John',
+    type: 'Swordsman',
+    level: 1,
+    health: 100,
+    attack: 40,
+    defence: 10,
+  };
+  expect(character).toEqual(expected);
 });
 
-test('sort with wrong filter', () => {
-  const filter = ['name', 'smth'];
-  const expected = [
-    { key: 'name', value: 'мечник' },
-    { key: 'attack', value: 80 },
-    { key: 'defence', value: 40 },
-    { key: 'health', value: 10 },
-    { key: 'level', value: 2 },
-  ];
-  expect(sort(hero, filter)).toEqual(expected);
+test('Сoздание персонажа неверного типа дает ошибку', () => {
+  expect(() => {
+  new Character('Dragon', 'Dragon');
+  }).toThrow();
 });
 
-test('sort without filter', () => {
-  const expected = [
-    { key: 'attack', value: 80 },
-    { key: 'defence', value: 40 },
-    { key: 'health', value: 10 },
-    { key: 'level', value: 2 },
-    { key: 'name', value: 'мечник' },
-  ];
-  expect(sort(hero)).toEqual(expected);
+test('Создание персонажа с некорректным именем дает ошибку', () => {
+  expect(() => {
+    new Character('Z', 'Daemon');
+  }).toThrow();
+});
+
+test('Создание персонажа с длинным именем дает ошибку', () => {
+  expect(() => {
+    new Character('Qwertyuiopasdf', 'Daemon');
+  }).toThrow();
 });
