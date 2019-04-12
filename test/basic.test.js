@@ -1,21 +1,44 @@
-import getNumber from '../src/js/app';
+import sort from '../src/js/app';
 
-test('should return number', () => {
-  expect(getNumber('80')).toBe(80);
+const hero = {
+  name: 'мечник',
+  health: 10,
+  level: 2,
+  attack: 80,
+  defence: 40,
+};
+
+test('sort with filter', () => {
+  const filter = ['name', 'level'];
+  const expected = [
+    { key: 'name', value: 'мечник' },
+    { key: 'level', value: 2 },
+    { key: 'attack', value: 80 },
+    { key: 'defence', value: 40 },
+    { key: 'health', value: 10 },
+  ];
+  expect(sort(hero, filter)).toEqual(expected);
 });
 
-test('input null should return error', () => {
-  expect(getNumber('0')).toEqual(Error('Ввод некорректен'));
+test('sort with wrong filter', () => {
+  const filter = ['name', 'smth'];
+  const expected = [
+    { key: 'name', value: 'мечник' },
+    { key: 'attack', value: 80 },
+    { key: 'defence', value: 40 },
+    { key: 'health', value: 10 },
+    { key: 'level', value: 2 },
+  ];
+  expect(sort(hero, filter)).toEqual(expected);
 });
 
-test('input negative should return error', () => {
-  expect(getNumber('-1')).toEqual(Error('Ввод некорректен'));
-});
-
-test('input non integer should return error', () => {
-  expect(getNumber('0.6')).toEqual(Error('Ввод некорректен'));
-});
-
-test('input string should return error', () => {
-  expect(getNumber('string')).toEqual(Error('Ввод некорректен'));
+test('sort without filter', () => {
+  const expected = [
+    { key: 'attack', value: 80 },
+    { key: 'defence', value: 40 },
+    { key: 'health', value: 10 },
+    { key: 'level', value: 2 },
+    { key: 'name', value: 'мечник' },
+  ];
+  expect(sort(hero)).toEqual(expected);
 });

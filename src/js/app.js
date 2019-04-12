@@ -1,13 +1,27 @@
-const getNumber = (str) => {
-  try {
-    let parsed = +str;
-    console.log(parsed);
-    if ((parsed ^ 0) !== parsed || Number.isNaN(parsed) || parsed <= 0) {
-      throw new Error('Ввод некорректен');
-    } else return parsed;
-  } catch (e) {
-    return e;
-  }  
-};
+function sort(hero, filter) {
+  const arrayFiltred = [];
+  const arrayNotFiltred = [];
 
-export default getNumber;
+  if (filter) {
+    filter.forEach((item) => {
+      arrayFiltred.push({
+        key: item,
+        value: hero[item],
+      });
+    });
+  }
+
+  for (const item in hero) {
+    if (!arrayFiltred.includes(item)) {
+      arrayNotFiltred.push({
+        key: item,
+        value: hero[item],
+      });
+    }
+  }
+  arrayNotFiltred.sort();
+
+  return arrayFiltred.concat(arrayNotFiltred);
+}
+
+export default sort;

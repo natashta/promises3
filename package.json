@@ -1,7 +1,7 @@
 {
   "name": "try-catch",
   "version": "1.0.0",
-  "description": "homework try-catch task 1",
+  "description": "homework for-in task 1",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
@@ -18,7 +18,7 @@
     "show:dist": "live-server dist"
   },
   "keywords": [
-    "try-catch"
+    "for-in"
   ],
   "author": "natashta",
   "license": "ISC",
