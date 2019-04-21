@@ -15,7 +15,7 @@ test('Создание персонажа с заданными свойства
 
 test('Сoздание персонажа неверного типа дает ошибку', () => {
   expect(() => {
-  new Character('Dragon', 'Dragon');
+    new Character('Dragon', 'Dragon');
   }).toThrow();
 });
 
